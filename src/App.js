@@ -1,6 +1,22 @@
 import "./App.css";
+import React from "react";
 
 function App() {
+  const [tableElements, setTableElements] = React.useState([]);
+
+  React.useEffect(() => {
+    fetch("./db.json")
+      .then((res) => {
+        console.log(res);
+        return res.json();
+      })
+      .then((json) => {
+        setTableElements(json);
+      });
+  }, []);
+
+  console.log(tableElements);
+
   return (
     <>
       <table className="table">
@@ -13,12 +29,14 @@ function App() {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>2095</td>
-            <td>Доход</td>
-            <td>3-07-2021 01:47:00</td>
-          </tr>
+          {tableElements.map((item) => (
+            <tr>
+              <th scope="row">{item.id}</th>
+              <td>{item.value}</td>
+              <td>{item.type}</td>
+              <td>{item.date}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <div className="">
