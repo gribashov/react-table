@@ -1,9 +1,10 @@
-import "./App.css";
 import React, {useState} from "react";
+import moment from "moment";
 
 import {Button} from "./components/Button";
 import {Table} from "./components/Table";
 
+import "./App.css";
 export const AppContext = React.createContext({});
 
 function App() {
@@ -43,8 +44,8 @@ function App() {
         setTableElements(
           tableElements.filter(
             (element) =>
-              new Date(element.date) <
-              new Date().setMonth(new Date().getMonth() - 1)
+              moment().subtract(1, "months").format("MM-DD-YYYY") <
+              moment(element.date).add(1, "days").format("MM-DD-YYYY")
           )
         ),
     },
@@ -57,7 +58,10 @@ function App() {
     },
   ];
 
-  console.log(new Date().getMonth() + 1);
+  console.log(
+    tableElements.map((element) => moment(element.date).format("MM"))
+  );
+  console.log(moment().format("MM"));
 
   return (
     <AppContext.Provider value={{tableElements}}>
