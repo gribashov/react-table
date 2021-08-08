@@ -1,8 +1,9 @@
-import React, {useContext, useState} from "react";
+import React, {useContext} from "react";
 import {AppContext} from "../App";
 
 export const Table = () => {
   const {tableElements} = useContext(AppContext);
+
   return (
     <table className="table">
       <thead>
@@ -14,12 +15,12 @@ export const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {tableElements.map((item) => (
+        {tableElements.map((element) => (
           <tr>
-            <th scope="row">{item.id}</th>
-            <td>{item.value}</td>
-            <td>{item.type}</td>
-            <td>{item.date}</td>
+            <th scope="row">{element.id}</th>
+            <td>{element.value}</td>
+            <td>{element.type}</td>
+            <td>{element.date}</td>
           </tr>
         ))}
       </tbody>
