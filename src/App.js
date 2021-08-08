@@ -57,7 +57,7 @@ function App() {
     },
   ];
 
-  console.log(new Date().getMonth());
+  console.log(new Date().getMonth() + 1);
 
   return (
     <AppContext.Provider value={{tableElements}}>
